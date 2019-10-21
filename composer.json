@@ -1,35 +1,37 @@
 {
-    "name": "laravel-notification-channels/faxir",
-    "description": "Fastreserve Fax.ir Notifications Driver",
-    "keywords": [
-        "fax notification",
-        "laravel",
-        "fax",
-        "notification",
-        "fax notifications channel",
-        "fax php",
-        "fax.ir"
-    ],
-    "homepage": "https://gitlab.com/fastreserve/laravel-notification-channels/faxir",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Reza Alidoust",
-            "email": "reza.alidoust20@gmail.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": ">=5.6.0"
-    },
-    "require-dev": {
-    },
-    "autoload": {
-        "psr-4": {
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-        }
+  "name": "laravel-notification-channels/faxir",
+  "description": "Fastreserve Fax.ir Notifications Driver",
+  "keywords": [
+    "fax notification",
+    "laravel",
+    "fax",
+    "notification",
+    "fax notifications channel",
+    "fax php",
+    "fax.ir"
+  ],
+  "homepage": "https://gitlab.com/fastreserve/laravel-notification-channels/faxir",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Reza Alidoust",
+      "email": "reza.alidoust20@gmail.com",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": ">=5.6.0"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "NotificationChannels\\Faxir\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+    }
+  },
+  "minimum-stability": "dev"
 }

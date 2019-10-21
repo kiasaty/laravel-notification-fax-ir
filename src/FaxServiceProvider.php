@@ -1,6 +1,9 @@
 <?php
 
+namespace NotificationChannels\Faxir;
+
 use GuzzleHttp\Client as HttpClient;
+use Illuminate\Mail\Mailer;
 use Illuminate\Support\ServiceProvider;
 
 class FaxServiceProvider extends ServiceProvider
@@ -11,9 +14,10 @@ class FaxServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->when(FaxChannel::class)
+            ->needs(Fax::class)
             ->give(function () {
-                return new Telegram(
-                    config('services.telegram-bot-api.token'),
+                return new Fax(
+                    app('mailer'),
                     new HttpClient()
                 );
             });

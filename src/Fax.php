@@ -1,7 +1,10 @@
 <?php
 
+namespace NotificationChannels\Faxir;
 
 use GuzzleHttp\Client as HttpClient;
+use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Mail\Mailable;
 
 class Fax
 {
@@ -9,17 +12,25 @@ class Fax
     /** @var HttpClient HTTP Client */
     protected $http;
 
-    /** @var null|string Telegram Bot API Token. */
-    protected $token = null;
-
-    /**
-     * @param null $token
+    /** @var Mailer
+     * protected $mailer;
+     *
+     * /**
+     * @param Mailer $mailer
      * @param HttpClient|null $httpClient
      */
-    public function __construct($token = null, HttpClient $httpClient = null)
+    public function __construct($mailer = null, HttpClient $httpClient = null)
     {
-        $this->token = $token;
-
+        $this->mailer = $mailer;
         $this->http = $httpClient;
+    }
+
+    /**
+     * @param FaxMessage $message
+     */
+    public function sendFax($message)
+    {
+        $mail = new FaxMail($message);
+        return $mail->send($this->mailer);
     }
 }
