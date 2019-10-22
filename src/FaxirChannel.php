@@ -1,6 +1,6 @@
 <?php
 
-namespace GrsChannel\LaravelFaxirNotification;
+namespace NotificationChannels\Faxir;
 
 use Illuminate\Notifications\Notification;
 use App\Channels\Messages\FaxMessage;
@@ -12,9 +12,9 @@ class FaxirChannel
      * WebSmsChannel constructor.
      * @param $mailer
      */
-    public function __construct($mailer = null)
+    public function __construct($mailer)
     {
-        $this->mailer = $mailer ?? app('mailer');
+        $this->mailer = $mailer;
     }
 
     /**
