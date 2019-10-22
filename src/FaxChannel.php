@@ -1,37 +1,42 @@
 <?php
 
-namespace NotificationChannels\Faxir;
+namespace GrsChannel\LaravelFaxirNotification;
 
 use Illuminate\Notifications\Notification;
+use App\Channels\Messages\FaxMessage;
 
-class FaxChannel
+class FaxirChannel
 {
-
-    /** @var Fax */
-    protected $fax;
-
+    private $mailer;
     /**
-     * FaxChannel constructor.
-     * @param Fax $fax
+     * WebSmsChannel constructor.
+     * @param $mailer
      */
-    public function __construct(Fax $fax)
+    public function __construct($mailer = null)
     {
-        $this->fax = $fax;
+        $this->mailer = $mailer ?? app('mailer');
     }
 
     /**
      * Send the given notification.
      *
-     * @param mixed $notifiable
-     * @param Notification $notification
+     * @param  mixed  $notifiable
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return void
      */
     public function send($notifiable, Notification $notification)
     {
-        /** @var FaxMessage $message */
-        $message = $notification->toFax($notifiable);
-        
-        $message->setTo($notifiable->routeNotificationFor('fax').'@fax.ir');
+        $faxMessage = $notification->toFax($notifiable);
 
-        return $this->fax->sendFax($message);
+        // Send notification to the $notifiable instance...
+        return $this->mailer->raw('', function($emailMessage) use ($faxMessage) {
+            $emailMessage
+                ->to($faxMessage->getTo())
+                ->from($faxMessage->getFrom())
+                ->subject($faxMessage->getSubject());
+            foreach($faxMessage->getAttachments() as $file) {
+                $emailMessage->attachData($file, 'Reservation.pdf', ['mime' => 'application/pdf']);
+            }
+        });
     }
 }
