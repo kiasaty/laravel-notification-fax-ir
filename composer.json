@@ -1,5 +1,5 @@
 {
-    "name": "laravel-notification-channels/fax-ir",
+    "name": "grschannel/laravel-notification-fax-ir",
     "description": "You can use this Package to send fax notifications using www.fax.ir",
     "keywords": [
         "fax notification",
@@ -31,7 +31,7 @@
     "require-dev": {},
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\Faxir\\": "src/"
+            "GrsChannel\\LaravelNotificationFaxir": "src/"
         }
     },
     "autoload-dev": {

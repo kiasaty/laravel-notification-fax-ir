@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Faxir;
+namespace GrsChannel\LaravelNotificationFaxir;
 
 class FaxMessage
 {

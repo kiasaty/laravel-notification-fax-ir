@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Faxir;
+namespace GrsChannel\LaravelNotificationFaxir;
 
 use Illuminate\Support\ServiceProvider;
 
