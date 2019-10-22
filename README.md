@@ -8,5 +8,5 @@
 Require this package in your `composer.json` or install it by running:
 
 ```
-composer require guschannel/laravel-faxir-notification
+composer require grschannel/laravel-faxir-notification
 ```
