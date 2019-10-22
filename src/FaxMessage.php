@@ -4,18 +4,10 @@ namespace NotificationChannels\Faxir;
 
 class FaxMessage
 {
-
-    /** @var string */
     private $from;
-
-    /** @var string */
     private $to;
-
-    /** @var string */
-    private $text;
-
-    /** @var string */
-    private $file;
+    private $subject;
+    private $attachments = [];
 
     /**
      * @return string
@@ -26,15 +18,7 @@ class FaxMessage
     }
 
     /**
-     * @param string $from
-     */
-    public function setFrom($from)
-    {
-        $this->from = $from;
-    }
-
-    /**
-     * @return string
+     * @return mixed
      */
     public function getTo()
     {
@@ -42,42 +26,59 @@ class FaxMessage
     }
 
     /**
-     * @param string $to
+     * @return array $attachments
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param string $from
+     * @return $this
+     */
+    public function setFrom($from)
+    {
+        $this->from = $from;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $to
+     * @return $this
      */
     public function setTo($to)
     {
         $this->to = $to;
+
+        return $this;
     }
 
     /**
-     * @return string
+     * @param mixed $subject
+     * @return $this
      */
-    public function getText()
+    public function setSubject($subject)
     {
-        return $this->text;
+        $this->subject = $subject;
+
+        return $this;
     }
 
     /**
-     * @param string $text
+     * @param file $file
+     * @return FaxMessage $this
      */
-    public function setText($text)
+    public function attach($file)
     {
-        $this->text = $text;
+        if (is_array($file)) {
+            array_push($this->attachments, ...$file);
+        } else {
+            $this->attachments[] = $file;
+        }
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getFile()
-    {
-        return $this->files;
-    }
-
-    /**
-     * @param string $files
-     */
-    public function setFile($files)
-    {
-        $this->files = $files;
-    }
 }
