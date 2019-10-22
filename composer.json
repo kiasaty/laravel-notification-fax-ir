@@ -31,7 +31,7 @@
     "require-dev": {},
     "autoload": {
         "psr-4": {
-            "GrsChannel\\LaravelNotificationFaxir": "src/"
+            "GrsChannel\\LaravelNotificationFaxir\\": "src/"
         }
     },
     "autoload-dev": {
