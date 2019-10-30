@@ -10,27 +10,14 @@ class FaxMessage
     private $attachments = [];
 
     /**
+     * returns the Sender's email address
+     * 
+     * @todo it should return the server email address as default
      * @return string
      */
     public function getFrom()
     {
         return $this->from;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTo()
-    {
-        return $this->to;
-    }
-
-    /**
-     * @return array $attachments
-     */
-    public function getAttachments()
-    {
-        return $this->attachments;
     }
 
     /**
@@ -45,6 +32,20 @@ class FaxMessage
     }
 
     /**
+     * returns the Receiver's email address
+     * 
+     * @return mixed
+     */
+    public function getTo()
+    {
+        return $this->to;
+    }
+
+    /**
+     * 
+     * 
+     * @todo it actually should set the Receiver's phone number, not email address
+     * 
      * @param mixed $to
      * @return $this
      */
@@ -53,6 +54,16 @@ class FaxMessage
         $this->to = $to;
 
         return $this;
+    }
+
+    /**
+     * returns the subject of the faxMessage
+     * 
+     * @return string $subject
+     */
+    public function getSubject()
+    {
+        return $this->subject;
     }
 
     /**
@@ -67,6 +78,17 @@ class FaxMessage
     }
 
     /**
+     * @return array $attachments
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * 
+     * @todo it should accept file addresses not string content of the file
+     * 
      * @param file $file
      * @return FaxMessage $this
      */

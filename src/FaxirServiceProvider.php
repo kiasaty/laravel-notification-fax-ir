@@ -7,18 +7,32 @@ use Illuminate\Support\ServiceProvider;
 class FaxirServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
      */
-    public function boot()
-    {
-        $this->app->when(FaxirChannel::class)
-            ->give(app('mailer'));
-    }
+    protected $defer = true;
 
     /**
-     * Register any package services.
+     * Register any application services.
+     *
+     * @todo check if there is no cleaner way
+     * @return void
      */
     public function register()
     {
+        $this->app->singleton(FaxirChannel::class, function ($app) {
+            return new FaxirChannel(app('mailer'));
+        });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [FaxirChannel::class];
     }
 }
